@@ -1,11 +1,11 @@
 '''This will play important role'''
 import os 
 import sys
-from src.exceptions import CustomException
+from src.exception import CustomException
 from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import dataclasses import dataclass
+from dataclasses import dataclass
 
 @dataclass
 class DataIngestionConfig:
