@@ -1,7 +1,6 @@
 '''This will play important role'''
 import os 
 import sys
-from src.components import data_transformation
 from src.exception import CustomException
 from src.logger import logging
 import pandas as pd
@@ -9,7 +8,6 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation
-from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -25,7 +23,28 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Data Ingestion method starts")
         try:
-            df = pd.read_csv('notebook/data/insurance.csv')
+            # Try a couple of common locations for the dataset so the script
+            # works whether the CSV is in `data/` or `notebook/data/`.
+            candidate_paths = [
+                os.path.join('data', 'insurance.csv'),
+                os.path.join('notebook', 'data', 'insurance.csv'),
+                os.path.join(os.getcwd(), 'data', 'insurance.csv'),
+                os.path.join(os.getcwd(), 'notebook', 'data', 'insurance.csv')
+            ]
+
+            data_path = None
+            for p in candidate_paths:
+                if os.path.exists(p):
+                    data_path = p
+                    break
+
+            if data_path is None:
+                raise FileNotFoundError(
+                    f"Could not find 'insurance.csv'. Tried: {candidate_paths}"
+                )
+
+            logging.info(f"Reading dataset from: {data_path}")
+            df = pd.read_csv(data_path)
             logging.info("Dataset read as pandas dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -52,4 +71,4 @@ if __name__ == "__main__":
 
     data_transformation = DataTransformation()
     data_transformation.initiate_data_transformation(train_data, test_data)
-    
+

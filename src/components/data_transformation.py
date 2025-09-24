@@ -24,15 +24,19 @@ class DataTransformation:
         '''This function is responsible for data transformation'''
         
         try:
-            numerical_columns = ['age', 'bmi', 'children', 'charges']
+            # 'charges' is the target variable and should not be part of the
+            # input feature preprocessing pipelines. Keep only input features
+            numerical_columns = ['age', 'bmi', 'children']
             categorical_columns = ['sex', 'smoker', 'region']
             num_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy='median')),
                 ('scaler', StandardScaler())
             ])
+            # Use handle_unknown='ignore' so transformation doesn't fail if the
+            # test set contains unseen categories.
             cat_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy='most_frequent')),
-                ('one_hot_encoder', OneHotEncoder()),
+                ('one_hot_encoder', OneHotEncoder(handle_unknown='ignore', sparse_output=False)),
                 ('scaler', StandardScaler(with_mean=False))
             ])
 
