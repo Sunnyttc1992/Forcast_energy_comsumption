@@ -6,6 +6,7 @@ scikit-learn
 catboost
 xgboost
 Flask
-pickle
+gunicorn
 
-#-e .
+# If you are developing locally and want an editable install, uncomment below
+# -e .
