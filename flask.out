@@ -33,3 +33,9 @@ Traceback (most recent call last):
 SystemExit: 1
 [2025-09-25 19:17:01 +0000] [20650] [INFO] Worker exiting (pid: 20650)
 [2025-09-25 19:17:01 +0000] [21131] [INFO] Booting worker with pid: 21131
+[2025-09-25 19:40:12 +0000] [20638] [INFO] Handling signal: hup
+[2025-09-25 19:40:12 +0000] [20638] [INFO] Hang up: Master
+[2025-09-25 19:40:12 +0000] [30698] [INFO] Booting worker with pid: 30698
+[2025-09-25 19:40:12 +0000] [30699] [INFO] Booting worker with pid: 30699
+[2025-09-25 19:40:12 +0000] [20638] [ERROR] Worker (pid:21131) was sent SIGHUP!
+[2025-09-25 19:40:12 +0000] [20638] [ERROR] Worker (pid:20651) was sent SIGHUP!
