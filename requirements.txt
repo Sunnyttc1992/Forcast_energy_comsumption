@@ -5,7 +5,7 @@ matplotlib
 scikit-learn
 catboost
 xgboost
-Flask
+Flask>=2.2.5
 gunicorn
 
 # If you are developing locally and want an editable install, uncomment below

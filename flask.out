@@ -1,26 +1,35 @@
-nohup: ignoring input
- * Serving Flask app 'app'
- * Debug mode: on
+[2025-09-25 19:16:05 +0000] [20638] [INFO] Starting gunicorn 23.0.0
+[2025-09-25 19:16:05 +0000] [20638] [INFO] Listening at: http://0.0.0.0:8000 (20638)
+[2025-09-25 19:16:05 +0000] [20638] [INFO] Using worker: sync
+[2025-09-25 19:16:05 +0000] [20650] [INFO] Booting worker with pid: 20650
+[2025-09-25 19:16:05 +0000] [20651] [INFO] Booting worker with pid: 20651
+[2025-09-25 19:17:01 +0000] [20638] [CRITICAL] WORKER TIMEOUT (pid:20650)
+[2025-09-25 19:17:01 +0000] [20650] [ERROR] Error handling request (no URI read)
 Traceback (most recent call last):
-  File "/home/codespace/.local/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/codespace/.local/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/codespace/.local/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/codespace/.local/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/codespace/.local/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/codespace/.local/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspaces/Predict_insurance_price/app.py", line 25, in predict_datapoint
-    data = CustomData(
-           ^^^^^^^^^^^
-TypeError: CustomData.__init__() got an unexpected keyword argument 'charges'
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
+    req = next(parser)
+          ^^^^^^^^^^^^
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 271, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
+    data = unreader.read()
+           ^^^^^^^^^^^^^^^
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
+    d = self.chunk()
+        ^^^^^^^^^^^^
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+    return self.sock.recv(self.mxchunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Predict_insurance_price/.venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2025-09-25 19:17:01 +0000] [20650] [INFO] Worker exiting (pid: 20650)
+[2025-09-25 19:17:01 +0000] [21131] [INFO] Booting worker with pid: 21131
